@@ -41,7 +41,6 @@ class Form extends Component {
           id={this.inputNameId}
           placeholder="Enter name..."
           onChange={this.handleInputChange}
-          isRequired="true"
         />
 
         <Input
@@ -52,7 +51,6 @@ class Form extends Component {
           id={this.inputNumberId}
           placeholder="Enter phone..."
           onChange={this.handleInputChange}
-          isRequired="true"
           pattern="^[ 0-9]+$"
         />
 

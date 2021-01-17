@@ -23,7 +23,7 @@ function Input({
         placeholder={placeholder}
         onChange={onChange}
         className={s.input}
-        required={isRequired}
+        required
         pattern={pattern}
       />
     </label>
@@ -38,7 +38,6 @@ Input.propTypes = {
   type: PropTypes.string,
   onChange: PropTypes.func,
   label: PropTypes.string,
-  isRequired: PropTypes.string,
 };
 
 export default Input;

@@ -29,6 +29,13 @@ class App extends Component {
       id: shortid.generate(),
       ...formdata,
     };
+
+    this.state.contacts.forEach(contact => {
+      if (contact.name.includes(formdata.name)) {
+        alert(`${formdata.name} is already in contacts`);
+      }
+    });
+
     this.setState(prevstate => ({
       contacts: [...prevstate.contacts, NewContact],
     }));
