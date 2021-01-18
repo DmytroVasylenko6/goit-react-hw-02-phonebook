@@ -54,7 +54,7 @@ class Form extends Component {
           pattern="^\+?[0-9]{10,15}$"
         />
 
-        <Button text={'Add contact'} type={'submit'} color={'s.blueColor'} />
+        <Button text={'Add contact'} type={'submit'} color={'blue'} />
       </form>
     );
   }

@@ -12,7 +12,11 @@ export default function ContactsList({ contacts, onDeleteContact }) {
               <p>
                 {name}: {number}
               </p>
-              <Button text={'Delete'} listener={() => onDeleteContact(id)} />
+              <Button
+                text={'Delete'}
+                listener={() => onDeleteContact(id)}
+                color="red"
+              />
             </li>
           );
         })}
