@@ -25,24 +25,29 @@ class App extends Component {
   };
 
   handleSubmitForm = formdata => {
-    let NewContact = {
+    const newContact = {
       id: shortid.generate(),
       ...formdata,
     };
 
-    this.setState(prevstate => {
-      const NewContactsArr = [...prevstate.contacts];
-      const contactAudit = prevstate.contacts.find(
-        e => e.name === formdata.name,
-      );
+    if (newContact.name === '') {
+      alert('Please enter contact name');
+      return;
+    }
+    if (newContact.number === '') {
+      alert('Please enter contact phone number');
+      return;
+    }
 
-      if (contactAudit !== undefined) {
-        alert(`${formdata.name} is already in contacts`);
-        return;
-      }
-      NewContactsArr.push(NewContact);
-      return { contacts: NewContactsArr };
-    });
+    const hasContact = this.state.contacts.some(
+      contact => contact.name === newContact.name,
+    );
+
+    hasContact
+      ? alert(`${newContact.name} is already in contacts`)
+      : this.setState(prevState => ({
+          contacts: [...prevState.contacts, newContact],
+        }));
   };
 
   handleFindChange = event => {
@@ -59,7 +64,7 @@ class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
 
     const visibleContacts = this.getVisibleContacts();
 
@@ -70,21 +75,32 @@ class App extends Component {
         </Section>
 
         <Section title="Contacts">
-          <Container>
-            <Input
-              label="Find contacts by name"
-              type="text"
-              name="filter"
-              value={filter}
-              id={this.inputFindId}
-              placeholder="Find..."
-              onChange={this.handleFindChange}
+          {contacts.length > 1 ? (
+            <Container>
+              <Input
+                label="Find contacts by name"
+                type="text"
+                name="filter"
+                value={filter}
+                id={this.inputFindId}
+                placeholder="Find..."
+                onChange={this.handleFindChange}
+              />
+            </Container>
+          ) : (
+            false
+          )}
+
+          {contacts.length === 0 ? (
+            <span style={{ display: 'block', textAlign: 'center' }}>
+              No contacts
+            </span>
+          ) : (
+            <ContactsList
+              contacts={visibleContacts}
+              onDeleteContact={this.deleteContact}
             />
-          </Container>
-          <ContactsList
-            contacts={visibleContacts}
-            onDeleteContact={this.deleteContact}
-          />
+          )}
         </Section>
       </>
     );

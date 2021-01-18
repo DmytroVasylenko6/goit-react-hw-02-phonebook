@@ -9,7 +9,6 @@ function Input({
   placeholder,
   type,
   onChange,
-  isRequired,
   pattern,
 }) {
   return (
@@ -23,7 +22,6 @@ function Input({
         placeholder={placeholder}
         onChange={onChange}
         className={s.input}
-        required
         pattern={pattern}
       />
     </label>
@@ -38,6 +36,7 @@ Input.propTypes = {
   type: PropTypes.string,
   onChange: PropTypes.func,
   label: PropTypes.string,
+  pattern: PropTypes.string,
 };
 
 export default Input;

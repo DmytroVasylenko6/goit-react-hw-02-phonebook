@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import s from './Button.module.css';
 
-export default function Button({ text, listener, type }) {
+export default function Button({ text, listener, type, color }) {
   return (
-    <button className={s.button} type={type} onClick={listener}>
+    <button className={`${s.button} ${s.color}`} type={type} onClick={listener}>
       {text}
     </button>
   );

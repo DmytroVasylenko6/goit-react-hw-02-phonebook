@@ -49,12 +49,12 @@ class Form extends Component {
           name="number"
           value={number}
           id={this.inputNumberId}
-          placeholder="Enter phone..."
+          placeholder="+380990101010"
           onChange={this.handleInputChange}
-          pattern="^[ 0-9]+$"
+          pattern="^\+?[0-9]{10,15}$"
         />
 
-        <Button text={'Add contact'} type={'submit'} />
+        <Button text={'Add contact'} type={'submit'} color={'s.blueColor'} />
       </form>
     );
   }
