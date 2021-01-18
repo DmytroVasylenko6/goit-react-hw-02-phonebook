@@ -25,20 +25,24 @@ class App extends Component {
   };
 
   handleSubmitForm = formdata => {
-    const NewContact = {
+    let NewContact = {
       id: shortid.generate(),
       ...formdata,
     };
 
-    this.state.contacts.forEach(contact => {
-      if (contact.name.includes(formdata.name)) {
-        alert(`${formdata.name} is already in contacts`);
-      }
-    });
+    this.setState(prevstate => {
+      const NewContactsArr = [...prevstate.contacts];
+      const contactAudit = prevstate.contacts.find(
+        e => e.name === formdata.name,
+      );
 
-    this.setState(prevstate => ({
-      contacts: [...prevstate.contacts, NewContact],
-    }));
+      if (contactAudit !== undefined) {
+        alert(`${formdata.name} is already in contacts`);
+        return;
+      }
+      NewContactsArr.push(NewContact);
+      return { contacts: NewContactsArr };
+    });
   };
 
   handleFindChange = event => {
